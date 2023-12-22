@@ -4,7 +4,7 @@ import ProjectDescription
 struct SwiftUpApp: TargetConvertible {
     let path: String
     
-    var properties: [String : InfoPlist.Value] {
+    var properties: [String : Plist.Value] {
         PlistPropertiesBuilder()
             .set(bundleName: "$(APP_NAME)")
             .set(bundleDisplayName: "$(APP_NAME)")
@@ -31,7 +31,8 @@ struct SwiftUpApp: TargetConvertible {
             $0.infoPlist = .extendingDefault(with: properties)
         }
             .build(name: "SwiftUp",
+                   destinations: Global.destinations,
                    bundleID: Global.bundleID,
-                   deploymentTarget: Global.deploymentTarget)
+                   deploymentTargets: Global.deploymentTarget)
     }
 }

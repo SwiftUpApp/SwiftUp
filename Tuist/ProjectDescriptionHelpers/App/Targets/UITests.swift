@@ -7,6 +7,7 @@ struct UITests: TargetConvertible {
     var target: Target {
         .uiTests(
             of: App.swiftUpApp.target,
+            destinations: Global.destinations,
             sources: ["\(path)/UITests/**"])
     }
 }

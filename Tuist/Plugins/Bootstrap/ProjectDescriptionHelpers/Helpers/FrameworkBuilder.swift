@@ -12,19 +12,21 @@ public final class FrameworkBuilder {
     }
     
     public func build(name: String,
+                      destinations: Destinations,
                       bundleID: String,
                       sources: SourceFilesList,
-                      deploymentTarget: DeploymentTarget) -> Target {
+                      deploymentTargets: DeploymentTargets) -> Target {
         Target(
             name: name,
-            platform: deploymentTarget.platform,
+            destinations: destinations,
             product: .framework,
             bundleId: bundleID,
-            deploymentTarget: deploymentTarget,
+            deploymentTargets: deploymentTargets,
             infoPlist: infoPlist,
             sources: sources,
             resources: resources,
             dependencies: dependencies,
-            settings: settings)
+            settings: settings
+        )
     }
 }

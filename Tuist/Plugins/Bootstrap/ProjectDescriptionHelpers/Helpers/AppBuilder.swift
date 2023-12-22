@@ -13,19 +13,20 @@ public final class AppBuilder {
     }
     
     public func build(name: String,
+                      destinations: Destinations,
                       bundleID: String,
-                      deploymentTarget: DeploymentTarget) -> Target {
+                      deploymentTargets: DeploymentTargets) -> Target {
         Target(
             name: name,
-            platform: deploymentTarget.platform,
-            product: .app,
-            productName: name,
+            destinations: destinations,
+            product: .framework,
             bundleId: bundleID,
-            deploymentTarget: deploymentTarget,
+            deploymentTargets: deploymentTargets,
             infoPlist: infoPlist,
             sources: sources,
             resources: resources,
             dependencies: dependencies,
-            settings: settings)
+            settings: settings
+        )
     }
 }

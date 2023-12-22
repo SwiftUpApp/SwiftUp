@@ -1,7 +1,7 @@
 import ProjectDescription
 
-extension DeploymentTarget {
-    public var platform: Platform {
+extension Destinations {
+    public var platform: PackagePlatform {
         switch self {
         case .iOS:
             return .iOS
@@ -13,7 +13,7 @@ extension DeploymentTarget {
             return .visionOS
         case .watchOS:
             return .watchOS
-        @unknown default:
+        default:
             fatalError()
         }
     }

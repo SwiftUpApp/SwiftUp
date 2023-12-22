@@ -13,8 +13,10 @@ struct Splash: TargetConvertible {
             ]
         }
         .build(name: "Splash",
+               destinations: Global.destinations,
                bundleID: Global.bundleID + ".splash",
                sources: ["\(path)/Sources/**"],
-               deploymentTarget: Global.deploymentTarget)
+               deploymentTargets: Global.deploymentTarget
+        )
     }
 }

@@ -11,8 +11,9 @@ struct SwiftUpKit: TargetConvertible {
             ]
         }
         .build(name: "SwiftUpKit",
+               destinations: Global.destinations,
                bundleID: Global.bundleID + ".swiftUpKit",
                sources: ["\(path)/Sources/**"],
-               deploymentTarget: Global.deploymentTarget)
+               deploymentTargets: Global.deploymentTarget)
     }
 }

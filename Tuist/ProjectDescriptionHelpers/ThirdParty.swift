@@ -25,8 +25,9 @@ extension ThirdParty: TargetConvertible {
         }
         .build(
             name: externalSource.product,
+            destinations: Global.destinations,
             bundleID: Global.bundleID + ".\(externalSource.product.lowercased())",
             sources: [],
-            deploymentTarget: Global.deploymentTarget)
+            deploymentTargets: Global.deploymentTarget)
     }
 }

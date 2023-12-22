@@ -2,11 +2,11 @@ import ProjectDescription
 
 public final class PlistPropertiesBuilder {
     public typealias Key = String
-    private var properties: [Key: InfoPlist.Value] = [:]
+    private var properties: [Key: Plist.Value] = [:]
     
     public init() {}
     
-    public func build() -> [Key: InfoPlist.Value] {
+    public func build() -> [Key: Plist.Value] {
         properties
     }
 }
@@ -34,7 +34,7 @@ extension PlistPropertiesBuilder {
     
     public func set(fonts: [String]) -> Self {
         properties["UIAppFonts"] = .array(
-            fonts.map { InfoPlist.Value.string($0) }
+            fonts.map { Plist.Value.string($0) }
         )
         return self
     }
@@ -74,7 +74,7 @@ extension PlistPropertiesBuilder {
         case landscapeLeft
         case landscapeRight
         
-        var plistValue: InfoPlist.Value {
+        var plistValue: Plist.Value {
             switch self {
             case .portrait:
                 return "UIInterfaceOrientationPortrait"

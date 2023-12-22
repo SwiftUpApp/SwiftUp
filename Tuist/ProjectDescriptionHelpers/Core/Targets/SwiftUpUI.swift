@@ -12,8 +12,9 @@ struct SwiftUpUI: TargetConvertible {
             $0.resources = ["\(path)/Resources/**/*"]
         }
         .build(name: "SwiftUpUI",
+               destinations: Global.destinations,
                bundleID: Global.bundleID + ".SwiftUpUI",
                sources: ["\(path)/Sources/**"],
-               deploymentTarget: Global.deploymentTarget)
+               deploymentTargets: Global.deploymentTarget)
     }
 }
