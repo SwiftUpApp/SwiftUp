@@ -1,4 +1,4 @@
 #include "Base.xcconfig"
 
 APP_NAME = SwiftUp
-PRODUCT_BUNDLE_ID = com.swiftup.app
+BUNDLE_ID = com.swiftup.app

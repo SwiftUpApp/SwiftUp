@@ -2,8 +2,8 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct SplashView: View {
-    let store: StoreOf<SplashFeature>
-    @ObservedObject var viewStore: ViewStoreOf<SplashFeature>
+    private let store: StoreOf<SplashFeature>
+    @ObservedObject private var viewStore: ViewStoreOf<SplashFeature>
     
     public init(store: StoreOf<SplashFeature>) {
         self.store = store
