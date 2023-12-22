@@ -65,9 +65,10 @@ fastlane/test_output
 
 # Tuist ============================
 Derived/
-Tuist/master.key
 graph.dot
+.tuist-bin
 Tuist/Dependencies
+Tuist/master.key
 
 # Secrets ==========================
 *Secrets.plist
