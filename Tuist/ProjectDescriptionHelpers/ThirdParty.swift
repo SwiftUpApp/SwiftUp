@@ -3,17 +3,21 @@ import ProjectDescription
 
 public enum ThirdParty: CaseIterable {
     case composableArchitecture
-}
-
-extension ThirdParty: ExternalSourceConvertible {
-    public var externalSource: ExternalSource {
+    
+    public var product: String {
+        switch self {
+        case .composableArchitecture: 
+            return "ComposableArchitecture"
+        }
+    }
+    
+    public var package: Package {
         switch self {
         case .composableArchitecture:
-            return .init(
-                package: .package(
-                    url: "https://github.com/pointfreeco/swift-composable-architecture.git",
-                    from: "1.0.0"),
-                product: "ComposableArchitecture")
+            return .remote(
+                url: "https://github.com/pointfreeco/swift-composable-architecture",
+                requirement: .upToNextMajor(from: "1.5.6")
+            )
         }
     }
 }
@@ -21,12 +25,14 @@ extension ThirdParty: ExternalSourceConvertible {
 extension ThirdParty: TargetConvertible {
     public var target: Target {
         FrameworkBuilder {
-            $0.dependencies = [.external(name: externalSource.product)]
+            $0.dependencies = [
+                .package(product: product)
+            ]
         }
         .build(
-            name: externalSource.product,
+            name: product,
             destinations: Global.destinations,
-            bundleID: Global.bundleID + ".\(externalSource.product.lowercased())",
+            bundleID: Global.bundleID + ".\(product.lowercased())",
             sources: [],
             deploymentTargets: Global.deploymentTarget)
     }

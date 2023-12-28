@@ -69,6 +69,7 @@ graph.dot
 .tuist-bin
 Tuist/Dependencies
 Tuist/master.key
+Tuist/.swiftpm
 
 # Secrets ==========================
 *Secrets.plist

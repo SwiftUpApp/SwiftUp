@@ -4,6 +4,7 @@ import Bootstrap
 
 let project = Project(
     name: "SwiftUp",
+    packages: ThirdParty.allCases.map(\.package),
     targets: App.allCases.map(\.target)
                 + Core.allCases.map(\.target)
                 + Feature.allCases.map(\.target)
