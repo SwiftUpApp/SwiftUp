@@ -1,5 +1,6 @@
 import ComposableArchitecture
 
+@Reducer
 struct {{ name }}Feature: Reducer {
     struct State: Equatable {}
     
