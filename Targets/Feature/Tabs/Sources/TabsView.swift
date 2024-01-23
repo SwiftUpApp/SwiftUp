@@ -1,4 +1,8 @@
 import ComposableArchitecture
+import Dashboard
+import Events
+import Speakers
+import Settings
 import SwiftUI
 
 public struct TabsView: View {
@@ -11,9 +15,34 @@ public struct TabsView: View {
     }
 
     public var body: some View {
-        TabView {
-            Text("Tabs")
-        }
+        TabView(selection: viewStore.binding(
+            get: { $0.activeTab },
+            send: TabsFeature.Action.didSelectTab)) {
+                DashboardView(store: store.scope(
+                    state: \.dashboard,
+                    action: TabsFeature.Action.dashboard))
+                    .tabItem { Image(systemName: "bookmark") }
+                    .tag(Tab.dashboard)
+                
+                EventsView(store: store.scope(
+                    state: \.events,
+                    action: TabsFeature.Action.events))
+                    .tabItem { Image(systemName: "calendar") }
+                    .tag(Tab.events)
+                
+                SpeakersView(store: store.scope(
+                    state: \.speakers,
+                    action: TabsFeature.Action.speakers))
+                    .tabItem { Image(systemName: "music.mic") }
+                    .tag(Tab.speakers)
+                
+                SettingsView(store: store.scope(
+                    state: \.settings,
+                    action: TabsFeature.Action.settings))
+                    .tabItem { Image(systemName: "gear") }
+                    .tag(Tab.settings)
+            }
+            .toolbar(.hidden)
     }
 }
 

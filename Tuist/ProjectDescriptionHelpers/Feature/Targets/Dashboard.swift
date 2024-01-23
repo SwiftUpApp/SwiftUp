@@ -1,7 +1,7 @@
 import Bootstrap
 import ProjectDescription
 
-struct Tabs: TargetConvertible {
+struct Dashboard: TargetConvertible {
     let path: String
     
     var target: ProjectDescription.Target {
@@ -9,19 +9,14 @@ struct Tabs: TargetConvertible {
             $0.dependencies = [
                 Core.swiftUpKit.dependency,
                 Core.swiftUpUI.dependency,
-                Feature.dashboard.dependency,
-                Feature.events.dependency,
-                Feature.speakers.dependency,
-                Feature.settings.dependency,
                 ThirdParty.composableArchitecture.dependency
             ]
         }
-        .build(name: "Tabs",
+        .build(name: "Dashboard",
                destinations: Global.destinations,
-               bundleID: Global.bundleID + ".tabs",
+               bundleID: Global.bundleID + ".dashboard",
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget
         )
     }
 }
-

@@ -1,16 +1,58 @@
 import ComposableArchitecture
+import Dashboard
+import Events
+import Speakers
+import Settings
 
 @Reducer
 public struct TabsFeature: Reducer {
     public struct State: Equatable {
+        var dashboard: DashboardFeature.State = .init()
+        var events: EventsFeature.State = .init()
+        var speakers: SpeakersFeature.State = .init()
+        var settings: SettingsFeature.State = .init()
+        
+        var activeTab: Tab = .dashboard
+        
         public init() {}
     }
     
-    public enum Action {}
+    public enum Action {
+        case didSelectTab(Tab)
+        
+        case dashboard(DashboardFeature.Action)
+        case events(EventsFeature.Action)
+        case speakers(SpeakersFeature.Action)
+        case settings(SettingsFeature.Action)
+    }
     
     public init() {}
     
     public var body: some ReducerOf<Self> {
-        EmptyReducer()
+        Reduce { state, action in
+            switch action {
+            case let .didSelectTab(tab):
+                state.activeTab = tab
+                return .none
+                
+            case .dashboard,
+                 .events,
+                 .speakers,
+                 .settings:
+                return .none
+            }
+        }
+        Scope(state: \.dashboard, action: /Action.dashboard) {
+            DashboardFeature()
+        }
+        Scope(state: \.events, action: /Action.events) {
+            EventsFeature()
+        }
+        Scope(state: \.speakers, action: /Action.speakers) {
+            SpeakersFeature()
+        }
+        Scope(state: \.settings, action: /Action.settings) {
+            SettingsFeature()
+        }
     }
 }
