@@ -1,0 +1,6 @@
+#include "Base.xcconfig"
+
+APP_NAME = $(inherited) Dev
+DEVELOPMENT_TEAM =
+PRODUCT_BUNDLE_IDENTIFIER = com.internal.sample.app
+OTHER_SWIFT_FLAGS = -D INTERNAL_RELEASE

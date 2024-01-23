@@ -1,0 +1,4 @@
+#include "Base.xcconfig"
+
+APP_NAME = SwiftUp Dev
+BUNDLE_ID = com.swiftup.app.dev

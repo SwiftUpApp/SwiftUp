@@ -1,0 +1,12 @@
+import ComposableArchitecture
+
+@Reducer
+struct {{ name }}Feature: Reducer {
+    struct State: Equatable {}
+    
+    enum Action {}
+    
+    var body: some ReducerOf<Self> {
+        EmptyReducer()
+    }
+}

@@ -1,0 +1,5 @@
+import ComposableArchitecture
+import XCTest
+@testable import {{ name }}
+
+final class {{ name }}Tests: XCTestCase {}
