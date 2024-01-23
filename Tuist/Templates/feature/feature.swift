@@ -11,6 +11,6 @@ let featureTemplate = Template(
     ],
     items: [
         .file(
-            path: "\(Global.mainFolderPath)/\(featureNameAttribute)/Sources/\(featureNameAttribute)Feature.swift",
+            path: "\(Global.mainFolderPath)/Feature/\(featureNameAttribute)/Sources/\(featureNameAttribute)Feature.swift",
             templatePath: .init(stringLiteral: "../stencils/feature.stencil"))
     ])

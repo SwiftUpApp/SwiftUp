@@ -12,8 +12,8 @@ struct SwiftUpApp: TargetConvertible {
             .set(doesUseNonExemptEncryption: false)
             .set(macOSMinimumVersion: "12.3")
             .set(supportedInterfaceOrientations: [.portrait])
-            .set(version: "$(APP_VERSION)",
-                 buildNumber: "$(APP_BUILD_NUMBER)")
+            .set(version: "$(MARKETING_VERSION)",
+                 buildNumber: "$(CURRENT_PROJECT_VERSION)")
             .build()
     }
     
