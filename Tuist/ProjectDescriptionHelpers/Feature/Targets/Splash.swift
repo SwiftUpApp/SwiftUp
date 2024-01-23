@@ -9,6 +9,7 @@ struct Splash: TargetConvertible {
             $0.dependencies = [
                 Core.swiftUpKit.dependency,
                 Core.swiftUpUI.dependency,
+                Feature.tabs.dependency,
                 ThirdParty.composableArchitecture.dependency
             ]
         }
