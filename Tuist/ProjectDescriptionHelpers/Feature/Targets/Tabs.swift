@@ -15,6 +15,11 @@ struct Tabs: TargetConvertible {
                 Feature.settings.dependency,
                 ThirdParty.composableArchitecture.dependency
             ]
+            $0.unitTests = .init(
+                dependencies: [
+                    ThirdParty.composableArchitecture.dependency
+                ],
+                sources: ["\(path)/Tests/**"])
         }
         .build(name: "Tabs",
                destinations: Global.destinations,
