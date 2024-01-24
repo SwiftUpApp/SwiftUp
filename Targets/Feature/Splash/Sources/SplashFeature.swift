@@ -12,18 +12,27 @@ public struct SplashFeature: Reducer {
     public enum Action {
         case onAppear
         case path(StackAction<Path.State, Path.Action>)
+        case navigateToTabs
     }
     
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                return .run { send in
+                    // Workaround for iOS 17.0.1 bug with StackNavigation
+                    try await Task.sleep(for: .seconds(0.5))
+                    await send(.navigateToTabs)
+                }
+            case .navigateToTabs:
                 state.path.append(.tabs())
                 return .none
-                
-            case .path:
+            default:
                 return .none
             }
+        }
+        .forEach(\.path, action: \.path) {
+            Path()
         }
     }
     
