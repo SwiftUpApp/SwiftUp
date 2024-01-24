@@ -8,6 +8,7 @@ public enum Feature: CaseIterable {
     case speakers
     case splash
     case tabs
+    case tabsTests
     
     static let path = Global.mainFolderPath + "/Feature"
 }
@@ -27,6 +28,8 @@ extension Feature: TargetConvertible {
             return Splash(path: Feature.path + "/Splash").target
         case .tabs:
             return Tabs(path: Feature.path + "/Tabs").target
+        case .tabsTests:
+            return TabsTests(path: Feature.path + "/Tabs/Tests").target
         }
     }
 }
