@@ -19,7 +19,7 @@ public final class AppBuilder {
         Target(
             name: name,
             destinations: destinations,
-            product: .framework,
+            product: .app,
             bundleId: bundleID,
             deploymentTargets: deploymentTargets,
             infoPlist: infoPlist,

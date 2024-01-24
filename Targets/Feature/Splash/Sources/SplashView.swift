@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import SwiftUI
+import Tabs
 
 public struct SplashView: View {
     private let store: StoreOf<SplashFeature>
@@ -11,7 +12,23 @@ public struct SplashView: View {
     }
     
     public var body: some View {
-        EmptyView()
+        NavigationStackStore(store.scope(state: \.path, action: { .path($0) })) {
+            VStack {
+                Text("Splash")
+            }
+        } destination: { initialState in
+            switch initialState {
+            case .tabs:
+                CaseLet(
+                    /SplashFeature.Path.State.tabs,
+                     action: SplashFeature.Path.Action.tabs,
+                     then: TabsView.init
+                )
+            }
+        }
+        .onAppear {
+            viewStore.send(.onAppear)
+        }
     }
 }
 

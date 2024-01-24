@@ -1,7 +1,7 @@
 import Bootstrap
 import ProjectDescription
 
-struct Splash: TargetConvertible {
+struct Settings: TargetConvertible {
     let path: String
     
     var target: ProjectDescription.Target {
@@ -9,13 +9,12 @@ struct Splash: TargetConvertible {
             $0.dependencies = [
                 Core.swiftUpKit.dependency,
                 Core.swiftUpUI.dependency,
-                Feature.tabs.dependency,
                 ThirdParty.composableArchitecture.dependency
             ]
         }
-        .build(name: "Splash",
+        .build(name: "Settings",
                destinations: Global.destinations,
-               bundleID: Global.bundleID + ".splash",
+               bundleID: Global.bundleID + ".settings",
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget
         )
