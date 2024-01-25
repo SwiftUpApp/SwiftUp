@@ -1,13 +1,12 @@
-import Bootstrap
 import ProjectDescription
 
-struct SwiftUpKit: TargetConvertible {
+struct SwiftUpKit: Module {
     let path: String
     
-    var target: ProjectDescription.Target {
+    var mainTarget: Target {
         FrameworkBuilder {
-            $0.dependencies = [
-                ThirdParty.composableArchitecture.dependency
+            $0.thirdPartyDependencies = [
+                .composableArchitecture
             ]
         }
         .build(name: "SwiftUpKit",
@@ -15,5 +14,9 @@ struct SwiftUpKit: TargetConvertible {
                bundleID: Global.bundleID + ".swiftUpKit",
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget)
+    }
+    
+    var allTargets: [Target] {
+        [mainTarget]
     }
 }

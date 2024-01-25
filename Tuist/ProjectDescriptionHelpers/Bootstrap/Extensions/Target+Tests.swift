@@ -5,34 +5,50 @@ extension Target {
         of target: Target,
         destinations: Destinations,
         sources: SourceFilesList?,
-        dependencies: [TargetDependency] = []) -> Target {
+        featureDependencies: [Feature] = [],
+        coreDependencies: [Core] = [],
+        thirdPartyDependencies: [ThirdParty] = []) -> Target {
             makeTests(
                 ofUI: false,
                 destinations: destinations,
                 target: target,
                 sources: sources,
-                dependencies: dependencies)
+                featureDependencies: featureDependencies,
+                coreDependencies: coreDependencies,
+                thirdPartyDependencies: thirdPartyDependencies)
     }
     
     public static func uiTests(
         of target: Target,
         destinations: Destinations,
         sources: SourceFilesList?,
-        dependencies: [TargetDependency] = []) -> Target {
+        featureDependencies: [Feature] = [],
+        coreDependencies: [Core] = [],
+        thirdPartyDependencies: [ThirdParty] = []) -> Target {
             makeTests(
                 ofUI: true,
                 destinations: destinations,
                 target: target,
                 sources: sources,
-                dependencies: dependencies)
+                featureDependencies: featureDependencies,
+                coreDependencies: coreDependencies,
+                thirdPartyDependencies: thirdPartyDependencies)
     }
     
     private static func makeTests(ofUI: Bool,
                                   destinations: Destinations,
                                   target: Target,
                                   sources: SourceFilesList?,
-                                  dependencies: [TargetDependency]) -> Target {
-        Target(
+                                  featureDependencies: [Feature],
+                                  coreDependencies: [Core],
+                                  thirdPartyDependencies: [ThirdParty]) -> Target {
+        let dependencies = (
+            featureDependencies.map(\.module.mainTarget)
+            + coreDependencies.map(\.module.mainTarget)
+            + thirdPartyDependencies.map(\.mainTarget)
+        ).map { TargetDependency.target($0) }
+        
+        return Target(
             name: target.name + (ofUI ? "UI" : "Unit") + "Tests",
             destinations: destinations,
             product: .unitTests,

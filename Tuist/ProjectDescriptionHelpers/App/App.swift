@@ -1,4 +1,3 @@
-import Bootstrap
 import ProjectDescription
 
 public enum App: CaseIterable {
@@ -8,13 +7,13 @@ public enum App: CaseIterable {
     static let path = Global.mainFolderPath + "/App"
 }
 
-extension App: TargetConvertible {
+extension App {
     public var target: Target {
         switch self {
         case .swiftUpApp:
-            return SwiftUpApp(path: App.path).target
+            return SwiftUpApp(path: App.path).mainTarget
         case .uiTests:
-            return UITests(path: App.path).target
+            return UITests(path: App.path).mainTarget
         }
     }
 }

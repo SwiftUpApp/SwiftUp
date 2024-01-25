@@ -1,4 +1,3 @@
-import Bootstrap
 import ProjectDescription
 
 public enum Feature: CaseIterable {
@@ -8,28 +7,23 @@ public enum Feature: CaseIterable {
     case speakers
     case splash
     case tabs
-    case tabsTests
     
     static let path = Global.mainFolderPath + "/Feature"
-}
-
-extension Feature: TargetConvertible {
-    public var target: Target {
+    
+    public var module: Module {
         switch self {
         case .dashboard:
-            return Dashboard(path: Feature.path + "/Dashboard").target
+            return Dashboard(path: Feature.path + "/Dashboard")
         case .events:
-            return Events(path: Feature.path + "/Events").target
+            return Events(path: Feature.path + "/Events")
         case .settings:
-            return Settings(path: Feature.path + "/Settings").target
+            return Settings(path: Feature.path + "/Settings")
         case .speakers:
-            return Speakers(path: Feature.path + "/Speakers").target
+            return Speakers(path: Feature.path + "/Speakers")
         case .splash:
-            return Splash(path: Feature.path + "/Splash").target
+            return Splash(path: Feature.path + "/Splash")
         case .tabs:
-            return Tabs(path: Feature.path + "/Tabs").target
-        case .tabsTests:
-            return TabsTests(path: Feature.path + "/Tabs/Tests").target
+            return Tabs(path: Feature.path + "/Tabs")
         }
     }
 }

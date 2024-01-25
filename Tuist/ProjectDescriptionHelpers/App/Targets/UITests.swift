@@ -1,10 +1,9 @@
-import Bootstrap
 import ProjectDescription
 
-struct UITests: TargetConvertible {
+struct UITests {
     let path: String
     
-    var target: Target {
+    var mainTarget: Target {
         .uiTests(
             of: App.swiftUpApp.target,
             destinations: Global.destinations,

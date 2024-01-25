@@ -1,16 +1,15 @@
-import Bootstrap
 import ProjectDescription
 
-struct Speakers: TargetConvertible {
+struct Speakers: Module {
     let path: String
     
-    var target: ProjectDescription.Target {
+    var mainTarget: Target {
         FrameworkBuilder {
-            $0.dependencies = [
-                Core.swiftUpKit.dependency,
-                Core.swiftUpUI.dependency,
-                ThirdParty.composableArchitecture.dependency
+            $0.coreDependencies = [
+                .swiftUpKit,
+                .swiftUpUI
             ]
+            $0.thirdPartyDependencies = [.composableArchitecture]
         }
         .build(name: "Speakers",
                destinations: Global.destinations,
@@ -18,5 +17,9 @@ struct Speakers: TargetConvertible {
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget
         )
+    }
+    
+    var allTargets: [Target] {
+        [mainTarget]
     }
 }

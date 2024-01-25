@@ -1,7 +1,6 @@
-import Bootstrap
 import ProjectDescription
 
-struct SwiftUpApp: TargetConvertible {
+struct SwiftUpApp {
     let path: String
     
     var properties: [String : Plist.Value] {
@@ -18,15 +17,17 @@ struct SwiftUpApp: TargetConvertible {
             .build()
     }
     
-    var target: Target {
+    var mainTarget: Target {
         AppBuilder {
             $0.sources = [
                 "\(path)/Sources/**",
             ]
             $0.resources = ["\(path)/Resources/**/*"]
-            $0.dependencies = [
-                Feature.splash.dependency,
-                ThirdParty.composableArchitecture.dependency
+            $0.featureDependencies = [
+                .splash
+            ]
+            $0.thirdPartyDependencies = [
+                .composableArchitecture
             ]
             $0.settings = .settings(configurations: Configurations.allCases.map(\.configuration))
             $0.infoPlist = .extendingDefault(with: properties)
