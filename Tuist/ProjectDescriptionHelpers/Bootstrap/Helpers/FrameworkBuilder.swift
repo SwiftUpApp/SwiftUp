@@ -3,9 +3,10 @@ import ProjectDescription
 public final class FrameworkBuilder {
     public var infoPlist: InfoPlist = .default
     public var resources: ResourceFileElements?
-    public var dependencies: [TargetDependency] = []
-    public var unitTests: UnitTests?
-    public var settings: Settings?
+    public var featureDependencies: [Feature] = []
+    public var coreDependencies: [Core] = []
+    public var thirdPartyDependencies: [ThirdParty] = []
+    public var settings: ProjectDescription.Settings?
     
     public init(with configure: ((inout FrameworkBuilder) -> Void)) {
         var this = self
@@ -16,12 +17,14 @@ public final class FrameworkBuilder {
                       destinations: Destinations,
                       bundleID: String,
                       sources: SourceFilesList,
-                      deploymentTargets: DeploymentTargets
-                      
-    ) -> [Target] {
-        var targets: [Target] = []
+                      deploymentTargets: DeploymentTargets) -> Target {
+        let dependencies = (
+            featureDependencies.map(\.target)
+            + coreDependencies.map(\.target)
+            + thirdPartyDependencies.map(\.target)
+        ).map { TargetDependency.target($0) }
         
-        let featureTarget = Target(
+        return Target(
             name: name,
             destinations: destinations,
             product: .framework,

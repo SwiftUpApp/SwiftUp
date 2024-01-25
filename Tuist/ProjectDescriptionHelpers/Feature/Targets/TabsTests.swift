@@ -1,7 +1,6 @@
-import Bootstrap
 import ProjectDescription
 
-struct TabsTests: TargetConvertible {
+struct TabsTests {
     let path: String
     
     var target: Target {
@@ -9,6 +8,6 @@ struct TabsTests: TargetConvertible {
             of: Feature.tabs.target,
             destinations: .iOS,
             sources: "\(path)/**",
-            dependencies: [ThirdParty.composableArchitecture.dependency])
+            thirdPartyDependencies: [.composableArchitecture])
     }
 }

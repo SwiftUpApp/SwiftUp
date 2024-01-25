@@ -1,6 +1,5 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
-import Bootstrap
 
 let project = Project(
     name: "SwiftUp",

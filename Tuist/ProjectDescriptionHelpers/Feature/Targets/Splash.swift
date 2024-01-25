@@ -1,17 +1,16 @@
-import Bootstrap
 import ProjectDescription
 
-struct Splash: TargetConvertible {
+struct Splash {
     let path: String
     
     var target: ProjectDescription.Target {
         FrameworkBuilder {
-            $0.dependencies = [
-                Core.swiftUpKit.dependency,
-                Core.swiftUpUI.dependency,
-                Feature.tabs.dependency,
-                ThirdParty.composableArchitecture.dependency
+            $0.coreDependencies = [
+                .swiftUpKit,
+                .swiftUpUI
             ]
+            $0.featureDependencies = [.tabs]
+            $0.thirdPartyDependencies = [.composableArchitecture]
         }
         .build(name: "Splash",
                destinations: Global.destinations,

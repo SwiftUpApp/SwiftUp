@@ -1,4 +1,3 @@
-import Bootstrap
 import ProjectDescription
 
 public enum Core: CaseIterable {
@@ -8,7 +7,7 @@ public enum Core: CaseIterable {
     static let path = Global.mainFolderPath + "/Core"
 }
 
-extension Core: TargetConvertible {
+extension Core {
     public var target: Target {
         switch self {
         case .swiftUpKit:

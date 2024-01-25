@@ -1,4 +1,3 @@
-import Bootstrap
 import ProjectDescription
 
 public enum ThirdParty: CaseIterable {
@@ -22,18 +21,16 @@ public enum ThirdParty: CaseIterable {
     }
 }
 
-extension ThirdParty: TargetConvertible {
+extension ThirdParty {
     public var target: Target {
-        FrameworkBuilder {
-            $0.dependencies = [
-                .package(product: product)
-            ]
-        }
-        .build(
+        Target(
             name: product,
             destinations: Global.destinations,
-            bundleID: Global.bundleID + ".\(product.lowercased())",
+            product: .framework,
+            bundleId: Global.bundleID + ".\(product.lowercased())",
+            deploymentTargets: Global.deploymentTarget,
             sources: [],
-            deploymentTargets: Global.deploymentTarget)
+            dependencies: [.package(product: product)]
+        )
     }
 }

@@ -1,4 +1,3 @@
-import Bootstrap
 import ProjectDescription
 
 public enum Feature: CaseIterable {
@@ -13,7 +12,7 @@ public enum Feature: CaseIterable {
     static let path = Global.mainFolderPath + "/Feature"
 }
 
-extension Feature: TargetConvertible {
+extension Feature {
     public var target: Target {
         switch self {
         case .dashboard:

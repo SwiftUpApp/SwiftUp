@@ -1,13 +1,12 @@
-import Bootstrap
 import ProjectDescription
 
-struct SwiftUpUI: TargetConvertible {
+struct SwiftUpUI {
     let path: String
     
     var target: ProjectDescription.Target {
         FrameworkBuilder {
-            $0.dependencies = [
-                ThirdParty.composableArchitecture.dependency
+            $0.thirdPartyDependencies = [
+                .composableArchitecture
             ]
             $0.resources = ["\(path)/Resources/**/*"]
         }

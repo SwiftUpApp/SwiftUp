@@ -1,16 +1,15 @@
-import Bootstrap
 import ProjectDescription
 
-struct Settings: TargetConvertible {
+struct Settings {
     let path: String
     
     var target: ProjectDescription.Target {
         FrameworkBuilder {
-            $0.dependencies = [
-                Core.swiftUpKit.dependency,
-                Core.swiftUpUI.dependency,
-                ThirdParty.composableArchitecture.dependency
+            $0.coreDependencies = [
+                .swiftUpKit,
+                .swiftUpUI
             ]
+            $0.thirdPartyDependencies = [.composableArchitecture]
         }
         .build(name: "Settings",
                destinations: Global.destinations,

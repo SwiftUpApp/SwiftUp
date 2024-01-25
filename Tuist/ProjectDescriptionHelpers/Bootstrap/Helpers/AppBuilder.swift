@@ -4,8 +4,10 @@ public final class AppBuilder {
     public var infoPlist: InfoPlist?
     public var sources: SourceFilesList?
     public var resources: ResourceFileElements?
-    public var dependencies: [TargetDependency] = []
-    public var settings: Settings?
+    public var featureDependencies: [Feature] = []
+    public var coreDependencies: [Core] = []
+    public var thirdPartyDependencies: [ThirdParty] = []
+    public var settings: ProjectDescription.Settings?
     
     public init(with configure: ((inout AppBuilder) -> Void)) {
         var this = self
@@ -16,7 +18,13 @@ public final class AppBuilder {
                       destinations: Destinations,
                       bundleID: String,
                       deploymentTargets: DeploymentTargets) -> Target {
-        Target(
+        let dependencies = (
+            featureDependencies.map(\.target)
+            + coreDependencies.map(\.target)
+            + thirdPartyDependencies.map(\.target)
+        ).map { TargetDependency.target($0) }
+        
+        return Target(
             name: name,
             destinations: destinations,
             product: .app,
