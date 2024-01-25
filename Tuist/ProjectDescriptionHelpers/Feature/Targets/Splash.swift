@@ -1,9 +1,9 @@
 import ProjectDescription
 
-struct Splash {
+struct Splash: Module {
     let path: String
     
-    var target: ProjectDescription.Target {
+    var mainTarget: Target {
         FrameworkBuilder {
             $0.coreDependencies = [
                 .swiftUpKit,
@@ -18,5 +18,9 @@ struct Splash {
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget
         )
+    }
+    
+    var allTargets: [Target] {
+        [mainTarget]
     }
 }

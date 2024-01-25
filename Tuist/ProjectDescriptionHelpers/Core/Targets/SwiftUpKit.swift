@@ -1,9 +1,9 @@
 import ProjectDescription
 
-struct SwiftUpKit {
+struct SwiftUpKit: Module {
     let path: String
     
-    var target: ProjectDescription.Target {
+    var mainTarget: Target {
         FrameworkBuilder {
             $0.thirdPartyDependencies = [
                 .composableArchitecture
@@ -14,5 +14,9 @@ struct SwiftUpKit {
                bundleID: Global.bundleID + ".swiftUpKit",
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget)
+    }
+    
+    var allTargets: [Target] {
+        [mainTarget]
     }
 }

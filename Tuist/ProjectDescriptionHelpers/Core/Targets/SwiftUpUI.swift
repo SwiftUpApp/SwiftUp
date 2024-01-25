@@ -1,9 +1,9 @@
 import ProjectDescription
 
-struct SwiftUpUI {
+struct SwiftUpUI: Module {
     let path: String
     
-    var target: ProjectDescription.Target {
+    var mainTarget: Target {
         FrameworkBuilder {
             $0.thirdPartyDependencies = [
                 .composableArchitecture
@@ -15,5 +15,9 @@ struct SwiftUpUI {
                bundleID: Global.bundleID + ".SwiftUpUI",
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget)
+    }
+    
+    var allTargets: [Target] {
+        [mainTarget]
     }
 }

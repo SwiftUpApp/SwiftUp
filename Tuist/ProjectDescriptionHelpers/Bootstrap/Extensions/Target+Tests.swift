@@ -43,9 +43,9 @@ extension Target {
                                   coreDependencies: [Core],
                                   thirdPartyDependencies: [ThirdParty]) -> Target {
         let dependencies = (
-            featureDependencies.map(\.target)
-            + coreDependencies.map(\.target)
-            + thirdPartyDependencies.map(\.target)
+            featureDependencies.map(\.module.mainTarget)
+            + coreDependencies.map(\.module.mainTarget)
+            + thirdPartyDependencies.map(\.mainTarget)
         ).map { TargetDependency.target($0) }
         
         return Target(

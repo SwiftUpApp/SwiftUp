@@ -17,7 +17,7 @@ struct SwiftUpApp {
             .build()
     }
     
-    var target: Target {
+    var mainTarget: Target {
         AppBuilder {
             $0.sources = [
                 "\(path)/Sources/**",

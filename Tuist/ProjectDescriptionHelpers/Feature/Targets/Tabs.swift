@@ -1,9 +1,9 @@
 import ProjectDescription
 
-struct Tabs {
+struct Tabs: Module {
     let path: String
     
-    var target: ProjectDescription.Target {
+    var mainTarget: Target {
         FrameworkBuilder {
             $0.coreDependencies = [
                 .swiftUpKit,
@@ -23,6 +23,20 @@ struct Tabs {
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget
         )
+    }
+    
+    var allTargets: [Target] {
+        [mainTarget, unitTestsTarget]
+    }
+    
+    private var unitTestsTarget: Target {
+        .unitTests(
+            of: mainTarget,
+            destinations: mainTarget.destinations,
+            sources: ["\(path)/Tests/**"],
+            thirdPartyDependencies: [
+                .composableArchitecture
+            ])
     }
 }
 

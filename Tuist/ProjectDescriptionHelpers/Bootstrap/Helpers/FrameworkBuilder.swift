@@ -17,11 +17,12 @@ public final class FrameworkBuilder {
                       destinations: Destinations,
                       bundleID: String,
                       sources: SourceFilesList,
-                      deploymentTargets: DeploymentTargets) -> Target {
+                      deploymentTargets: DeploymentTargets
+    ) -> Target {
         let dependencies = (
-            featureDependencies.map(\.target)
-            + coreDependencies.map(\.target)
-            + thirdPartyDependencies.map(\.target)
+            featureDependencies.map(\.module.mainTarget)
+            + coreDependencies.map(\.module.mainTarget)
+            + thirdPartyDependencies.map(\.mainTarget)
         ).map { TargetDependency.target($0) }
         
         return Target(
@@ -36,30 +37,5 @@ public final class FrameworkBuilder {
             dependencies: dependencies,
             settings: settings
         )
-        
-        targets.append(featureTarget)
-        
-        if let unitTests = unitTests {
-            targets.append(
-                Target.unitTests(
-                    of: featureTarget,
-                    destinations: destinations,
-                    sources: unitTests.sources,
-                    dependencies: unitTests.dependencies
-                )
-            )
-        }
-        
-        return targets
-    }
-}
-
-public struct UnitTests {
-    public let dependencies: [TargetDependency]
-    public let sources: SourceFilesList
-    
-    public init(dependencies: [TargetDependency], sources: SourceFilesList) {
-        self.dependencies = dependencies
-        self.sources = sources
     }
 }

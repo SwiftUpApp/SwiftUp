@@ -22,7 +22,7 @@ public enum ThirdParty: CaseIterable {
 }
 
 extension ThirdParty {
-    public var target: Target {
+    public var mainTarget: Target {
         Target(
             name: product,
             destinations: Global.destinations,

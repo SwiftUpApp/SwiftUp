@@ -1,9 +1,9 @@
 import ProjectDescription
 
-struct Speakers {
+struct Speakers: Module {
     let path: String
     
-    var target: ProjectDescription.Target {
+    var mainTarget: Target {
         FrameworkBuilder {
             $0.coreDependencies = [
                 .swiftUpKit,
@@ -17,5 +17,9 @@ struct Speakers {
                sources: ["\(path)/Sources/**"],
                deploymentTargets: Global.deploymentTarget
         )
+    }
+    
+    var allTargets: [Target] {
+        [mainTarget]
     }
 }
