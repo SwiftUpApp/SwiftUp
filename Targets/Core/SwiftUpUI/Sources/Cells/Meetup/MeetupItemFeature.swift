@@ -8,12 +8,14 @@ public struct MeetupItemFeature: Reducer {
         public let title: String
         public let description: String
         public let tags: [String]
+        public let city: String
 
-        public init(id: UUID = .init(), meetup: Meetup) {
-            self.id = id
+        public init(meetup: Meetup) {
+            self.id = meetup.id
             self.title = meetup.title
             self.description = meetup.description
             self.tags = meetup.tags
+            self.city = meetup.city
         }
     }
     
@@ -41,6 +43,5 @@ public struct MeetupItemFeature: Reducer {
 
 public extension MeetupItemFeature.State {
     static let mock: Self = .init(
-        id: .init(),
         meetup: .mock)
 }

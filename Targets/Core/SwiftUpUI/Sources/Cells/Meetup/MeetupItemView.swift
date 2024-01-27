@@ -12,6 +12,8 @@ public struct MeetupItemView: View {
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 6) {
+            location
+            
             Text(viewStore.title)
                 .font(.title3)
                 .foregroundStyle(.primary)
@@ -53,6 +55,16 @@ public struct MeetupItemView: View {
                 })
             .tint(.orange)
         }
+    }
+    
+    @ViewBuilder
+    private var location: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "mappin.and.ellipse")
+            Text(viewStore.city)
+        }
+        .font(.footnote)
+        .foregroundStyle(.secondary)
     }
 }
 
