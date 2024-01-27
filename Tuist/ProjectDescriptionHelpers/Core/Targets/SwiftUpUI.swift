@@ -5,6 +5,9 @@ struct SwiftUpUI: Module {
     
     var mainTarget: Target {
         FrameworkBuilder {
+            $0.coreDependencies = [
+                .swiftUpKit
+            ]
             $0.thirdPartyDependencies = [
                 .composableArchitecture
             ]
