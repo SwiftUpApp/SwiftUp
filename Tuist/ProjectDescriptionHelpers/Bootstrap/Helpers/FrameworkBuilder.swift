@@ -7,6 +7,7 @@ public final class FrameworkBuilder {
     public var coreDependencies: [Core] = []
     public var thirdPartyDependencies: [ThirdParty] = []
     public var settings: ProjectDescription.Settings?
+    public var scripts: [TargetScript] = []
     
     public init(with configure: ((inout FrameworkBuilder) -> Void)) {
         var this = self
@@ -34,6 +35,7 @@ public final class FrameworkBuilder {
             infoPlist: infoPlist,
             sources: sources,
             resources: resources,
+            scripts: scripts,
             dependencies: dependencies,
             settings: settings
         )
