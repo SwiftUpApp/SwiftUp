@@ -3,8 +3,9 @@ import Foundation
 import SwiftUpKit
 
 @Reducer
-public struct ConferenceItemFeature {
-    public struct State: Equatable {
+public struct ConferenceItemFeature: Reducer {
+    @ObservableState
+    public struct State: Equatable, Identifiable {
         public let id: UUID
         public let name: String
         public let imageURL: URL
@@ -16,9 +17,11 @@ public struct ConferenceItemFeature {
             self.imageURL = conference.imageURL
             self.city = conference.city
         }
+        
+        public static let mock: Self = .init(conference: .mock)
     }
     
-    public enum Action {
+    public enum Action: Equatable {
         case didSelectConference
     }
     
@@ -30,4 +33,6 @@ public struct ConferenceItemFeature {
             }
         }
     }
+    
+    public init() {}
 }

@@ -2,16 +2,16 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct DashboardView: View {
-    private let store: StoreOf<DashboardFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<DashboardFeature>
+    @Perception.Bindable private var store: StoreOf<DashboardFeature>
     
     public init(store: StoreOf<DashboardFeature>) {
         self.store = store
-        self.viewStore = ViewStore(store, observe: { $0 })
     }
     
     public var body: some View {
-        Image(systemName: "bookmark")
+        WithPerceptionTracking {
+            Image(systemName: "bookmark")
+        }
     }
 }
 

@@ -2,31 +2,31 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct ConferenceItemView: View {
-    private let store: StoreOf<ConferenceItemFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<ConferenceItemFeature>
+    @Perception.Bindable private var store: StoreOf<ConferenceItemFeature>
     
     public init(store: StoreOf<ConferenceItemFeature>) {
         self.store = store
-        self.viewStore = ViewStore(store, observe: { $0 })
     }
  
     public var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                AsyncImage(url: viewStore.imageURL)
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
-                Text(viewStore.name)
-                    .font(.title)
-                    .bold()
-                    
-                Spacer()
+        WithPerceptionTracking {
+            VStack(alignment: .leading) {
+                HStack {
+                    AsyncImage(url: store.imageURL)
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                    Text(store.name)
+                        .font(.title)
+                        .bold()
+                        
+                    Spacer()
+                }
+                
+                locationTag(name: store.city)
             }
-            
-            locationTag(name: viewStore.city)
-        }
-        .onTapGesture {
-            viewStore.send(.didSelectConference)
+            .onTapGesture {
+                store.send(.didSelectConference)
+            }
         }
     }
     

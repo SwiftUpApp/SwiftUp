@@ -2,58 +2,58 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct MeetupItemView: View {
-    private let store: StoreOf<MeetupItemFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<MeetupItemFeature>
+    @Perception.Bindable private var store: StoreOf<MeetupItemFeature>
     
     public init(store: StoreOf<MeetupItemFeature>) {
         self.store = store
-        self.viewStore = ViewStore(store, observe: { $0 })
     }
     
     public var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            location
-            
-            Text(viewStore.title)
-                .font(.title3)
-                .foregroundStyle(.primary)
-                .bold()
-            
-            Text(viewStore.description)
-                .foregroundStyle(.secondary)
-                .padding(.bottom, 5)
-            
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(viewStore.tags, id: \.self) { tag in
-                        Text(tag)
-                            .fontWeight(.heavy)
-                            .foregroundStyle(.white)
-                            .padding(.vertical, 6)
-                            .padding(.horizontal, 8)
-                            .background {
-                                Color.blue
-                            }
-                            .frame(height: 25)
-                            .cornerRadius(5)
+        WithPerceptionTracking {
+            VStack(alignment: .leading, spacing: 6) {
+                location
+                
+                Text(store.title)
+                    .font(.title3)
+                    .foregroundStyle(.primary)
+                    .bold()
+                
+                Text(store.description)
+                    .foregroundStyle(.secondary)
+                    .padding(.bottom, 5)
+                
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(store.tags, id: \.self) { tag in
+                            Text(tag)
+                                .fontWeight(.heavy)
+                                .foregroundStyle(.white)
+                                .padding(.vertical, 6)
+                                .padding(.horizontal, 8)
+                                .background {
+                                    Color.blue
+                                }
+                                .frame(height: 25)
+                                .cornerRadius(5)
+                        }
                     }
                 }
             }
-        }
-        .onTapGesture { viewStore.send(.didSelectMeetup) }
-        .swipeActions(edge: .trailing) {
-            Button(
-                action: { viewStore.send(.didSelectShare)},
-                label: {
-                    Image(systemName: "square.and.arrow.up.fill")
-                })
-            .tint(.blue)
-            Button(
-                action: { viewStore.send(.didSelectSave)}, 
-                label: {
-                    Image(systemName: "bookmark.fill")
-                })
-            .tint(.orange)
+            .onTapGesture { store.send(.didSelectMeetup) }
+            .swipeActions(edge: .trailing) {
+                Button(
+                    action: { store.send(.didSelectShare)},
+                    label: {
+                        Image(systemName: "square.and.arrow.up.fill")
+                    })
+                .tint(.blue)
+                Button(
+                    action: { store.send(.didSelectSave)},
+                    label: {
+                        Image(systemName: "bookmark.fill")
+                    })
+                .tint(.orange)
+            }
         }
     }
     
@@ -61,7 +61,7 @@ public struct MeetupItemView: View {
     private var location: some View {
         HStack(spacing: 4) {
             Image(systemName: "mappin.and.ellipse")
-            Text(viewStore.city)
+            Text(store.city)
         }
         .font(.footnote)
         .foregroundStyle(.secondary)
