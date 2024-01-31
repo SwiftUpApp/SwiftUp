@@ -2,16 +2,16 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct SettingsView: View {
-    private let store: StoreOf<SettingsFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<SettingsFeature>
+    @Perception.Bindable private var store: StoreOf<SettingsFeature>
     
     public init(store: StoreOf<SettingsFeature>) {
         self.store = store
-        self.viewStore = ViewStore(store, observe: { $0 })
     }
     
     public var body: some View {
-        Image(systemName: "gear")
+        WithPerceptionTracking {
+            Image(systemName: "gear")
+        }
     }
 }
 

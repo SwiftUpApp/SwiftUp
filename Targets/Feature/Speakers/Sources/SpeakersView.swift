@@ -2,16 +2,16 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct SpeakersView: View {
-    private let store: StoreOf<SpeakersFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<SpeakersFeature>
+    @Perception.Bindable private var store: StoreOf<SpeakersFeature>
     
     public init(store: StoreOf<SpeakersFeature>) {
         self.store = store
-        self.viewStore = ViewStore(store, observe: { $0 })
     }
     
     public var body: some View {
-        Image(systemName: "music.mic")
+        WithPerceptionTracking {
+            Image(systemName: "music.mic")
+        }
     }
 }
 

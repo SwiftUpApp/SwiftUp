@@ -2,7 +2,9 @@ import ComposableArchitecture
 import Foundation
 import SwiftUpKit
 
+@Reducer
 public struct MeetupItemFeature: Reducer {
+    @ObservableState
     public struct State: Equatable, Identifiable {
         public let id: UUID
         public let title: String
@@ -17,6 +19,8 @@ public struct MeetupItemFeature: Reducer {
             self.tags = meetup.tags
             self.city = meetup.city
         }
+        
+        public static let mock: Self = .init(meetup: .mock)
     }
     
     public enum Action: Equatable {
@@ -38,10 +42,5 @@ public struct MeetupItemFeature: Reducer {
         }
     }
     
-    public init () {}
-}
-
-public extension MeetupItemFeature.State {
-    static let mock: Self = .init(
-        meetup: .mock)
+    public init() {}
 }

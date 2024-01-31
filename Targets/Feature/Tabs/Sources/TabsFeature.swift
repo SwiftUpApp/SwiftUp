@@ -6,6 +6,7 @@ import Settings
 
 @Reducer
 public struct TabsFeature: Reducer {
+    @ObservableState
     public struct State: Equatable {
         var dashboard: DashboardFeature.State = .init()
         var events: EventsFeature.State = .init()
@@ -42,16 +43,16 @@ public struct TabsFeature: Reducer {
                 return .none
             }
         }
-        Scope(state: \.dashboard, action: /Action.dashboard) {
+        Scope(state: \.dashboard, action: \.dashboard) {
             DashboardFeature()
         }
-        Scope(state: \.events, action: /Action.events) {
+        Scope(state: \.events, action: \.events) {
             EventsFeature()
         }
-        Scope(state: \.speakers, action: /Action.speakers) {
+        Scope(state: \.speakers, action: \.speakers) {
             SpeakersFeature()
         }
-        Scope(state: \.settings, action: /Action.settings) {
+        Scope(state: \.settings, action: \.settings) {
             SettingsFeature()
         }
     }

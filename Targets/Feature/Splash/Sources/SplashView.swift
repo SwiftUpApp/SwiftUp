@@ -3,31 +3,31 @@ import SwiftUI
 import Tabs
 
 public struct SplashView: View {
-    private let store: StoreOf<SplashFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<SplashFeature>
+    @Perception.Bindable private var store: StoreOf<SplashFeature>
     
     public init(store: StoreOf<SplashFeature>) {
         self.store = store
-        self.viewStore = ViewStore(store, observe: { $0 })
     }
     
     public var body: some View {
-        NavigationStackStore(store.scope(state: \.path, action: { .path($0) })) {
-            VStack {
-                Text("Splash")
+        WithPerceptionTracking {
+            NavigationStack(
+                path: $store.scope(state: \.path, action: \.path)
+            ) {
+                VStack {
+                    Text("Splash")
+                }
+            } destination: { store in
+                switch store.state {
+                case .tabs:
+                    if let scopedStore = store.scope(state: \.tabs, action: \.tabs) {
+                        TabsView(store: scopedStore)
+                    }
+                }
             }
-        } destination: { initialState in
-            switch initialState {
-            case .tabs:
-                CaseLet(
-                    /SplashFeature.Path.State.tabs,
-                     action: SplashFeature.Path.Action.tabs,
-                     then: TabsView.init
-                )
+            .onAppear {
+                store.send(.onAppear)
             }
-        }
-        .onAppear {
-            viewStore.send(.onAppear)
         }
     }
 }

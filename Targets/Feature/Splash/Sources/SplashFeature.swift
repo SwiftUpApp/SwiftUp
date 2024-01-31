@@ -3,6 +3,7 @@ import Tabs
 
 @Reducer
 public struct SplashFeature: Reducer {
+    @ObservableState
     public struct State: Equatable {
         var path = StackState<Path.State>()
         
@@ -40,7 +41,9 @@ public struct SplashFeature: Reducer {
 }
 
 extension SplashFeature {
+    @Reducer
     public struct Path: Reducer {
+        @ObservableState
         public enum State: Equatable {
             case tabs(TabsFeature.State = .init())
         }
@@ -50,7 +53,7 @@ extension SplashFeature {
         }
         
         public var body: some ReducerOf<Self> {
-            Scope(state: /State.tabs, action: /Action.tabs) {
+            Scope(state: \.tabs, action: \.tabs) {
                 TabsFeature()
             }
         }

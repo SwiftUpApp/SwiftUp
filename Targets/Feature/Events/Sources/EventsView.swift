@@ -1,17 +1,31 @@
 import ComposableArchitecture
 import SwiftUI
+import SwiftUpUI
 
 public struct EventsView: View {
-    private let store: StoreOf<EventsFeature>
-    @ObservedObject private var viewStore: ViewStoreOf<EventsFeature>
+    @Perception.Bindable private var store: StoreOf<EventsFeature>
     
     public init(store: StoreOf<EventsFeature>) {
         self.store = store
-        self.viewStore = ViewStore(store, observe: { $0 })
     }
     
     public var body: some View {
-        Image(systemName: "calendar")
+        WithPerceptionTracking {
+            List {
+                ForEach(store.scope(state: \.events, action: \.events)) { childStore in
+                    switch childStore.state {
+                    case .conference:
+                        if let scopedStore = childStore.scope(state: \.conference, action: \.conference) {
+                            ConferenceItemView(store: scopedStore)
+                        }
+                    case .meetup:
+                        if let scopedStore = childStore.scope(state: \.meetup, action: \.meetup) {
+                            MeetupItemView(store: scopedStore)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -15,7 +15,7 @@ public enum ThirdParty: CaseIterable {
         case .composableArchitecture:
             return .remote(
                 url: "https://github.com/pointfreeco/swift-composable-architecture",
-                requirement: .upToNextMajor(from: "1.5.6")
+                requirement: .upToNextMajor(from: "1.7.0")
             )
         }
     }
