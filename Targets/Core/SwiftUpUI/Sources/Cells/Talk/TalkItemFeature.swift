@@ -6,7 +6,7 @@ import struct SwiftUpKit.Talk
 @Reducer
 public struct TalkItemFeature {
     @ObservableState
-    public struct State {
+    public struct State: Equatable, Identifiable {
         public let id: UUID
         public let title: String
         public let speaker: String
@@ -23,6 +23,8 @@ public struct TalkItemFeature {
     public enum Action {
         case didSelectTalk
     }
+    
+    public init() {}
     
     public var body: some ReducerOf<Self> {
         Reduce { state, action in

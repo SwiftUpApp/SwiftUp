@@ -8,21 +8,28 @@ public struct TagCollection: View {
     }
     
     public var body: some View {
-        ScrollView(.horizontal) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(tags, id: \.self) { tag in
                     Text(tag)
-                        .fontWeight(.heavy)
+                        .font(.subheadline)
+                        .fontWeight(.bold)
                         .foregroundStyle(.white)
-                        .padding(.vertical, 6)
-                        .padding(.horizontal, 8)
-                        .background {
-                            Color.blue
-                        }
+                        .padding(.vertical, 3)
+                        .padding(.horizontal, 6)
+                        .background(Color.blue)
                         .frame(height: 25)
                         .cornerRadius(5)
                 }
             }
+        }
+    }
+}
+
+struct TagCollectionPreviews: PreviewProvider {
+    static var previews: some View {
+        AppearanceGroup {
+            TagCollection(Array(repeating: "Content", count: 10))
         }
     }
 }

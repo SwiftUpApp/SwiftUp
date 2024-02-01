@@ -12,11 +12,12 @@ public struct TalkItemView: View {
         WithPerceptionTracking {
             VStack(alignment: .leading, spacing: 6) {
                 Text(store.title)
-                    .font(.title3)
+                    .font(.headline)
                     .foregroundStyle(.primary)
                     .bold()
                 
                 Text(store.speaker)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 5)
                 
