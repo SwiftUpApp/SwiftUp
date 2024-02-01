@@ -23,3 +23,5 @@
 
 "tag.other.design" = "Design";
 "tag.other.multiplatform" = "Multiplatform";
+
+"talk.speaker.prefix" = "by ";

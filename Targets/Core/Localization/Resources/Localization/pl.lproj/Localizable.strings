@@ -5,21 +5,23 @@
 "tag.city.wroclaw" = "Wrocław";
 
 "tag.competency.beginner" = "Początkujący";
-"tag.competency.intermediate" = "Średniozaawansowany";
+"tag.competency.intermediate" = "Średnio-zaawansowany";
 "tag.competency.advanced" = "Zaawansowany";
 
 "tag.practices.architecture" = "Architektura";
-"tag.practices.bestPractices" = "Najlepsze Praktyki";
+"tag.practices.bestPractices" = "Najlepsze praktyki";
 "tag.practices.debugging" = "Debugowanie";
 "tag.practices.modularisation" = "Modularyzacja";
 "tag.practices.testing" = "Testowanie";
-"tag.practices.tipsAndTricks" = "Porady i Sztuczki";
+"tag.practices.tipsAndTricks" = "Porady i triki";
 
 "tag.tools.combine" = "Combine";
-"tag.tools.networking" = "Sieciowe";
+"tag.tools.networking" = "Networking";
 "tag.tools.server" = "Serwer";
 "tag.tools.swiftUI" = "SwiftUI";
 "tag.tools.uiKit" = "UIKit";
 
 "tag.other.design" = "Projektowanie";
-"tag.other.multiplatform" = "Wieloplatformowy";
+"tag.other.multiplatform" = "Wieloplatformowe";
+
+"talk.speaker.prefix" = "";

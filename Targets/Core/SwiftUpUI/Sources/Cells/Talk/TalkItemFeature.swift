@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import struct Foundation.UUID
+import Localization
 import struct SwiftUpKit.Talk
 
 @Reducer
@@ -14,7 +15,7 @@ public struct TalkItemFeature {
         public init(talk: Talk) {
             self.id = talk.id
             self.title = talk.title
-            self.speaker = "by \(talk.speaker)"
+            self.speaker = "\(L10n.Talk.Speaker.prefix)\(talk.speaker)"
             self.tags = talk.tags.map { "\($0)" }
         }
     }
