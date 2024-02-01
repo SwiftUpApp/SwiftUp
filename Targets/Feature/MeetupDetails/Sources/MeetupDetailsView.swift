@@ -52,7 +52,7 @@ public struct MeetupDetailsView: View {
                                         .padding(.bottom, -10)
                                     Spacer()
                                 }
-                                .background(Color.black)
+                                .background(Color(UIColor.systemBackground))
                             }
                             .padding(.top)
 
