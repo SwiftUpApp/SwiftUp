@@ -22,22 +22,7 @@ public struct MeetupItemView: View {
                     .foregroundStyle(.secondary)
                     .padding(.bottom, 5)
                 
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(store.tags, id: \.self) { tag in
-                            Text(tag)
-                                .fontWeight(.heavy)
-                                .foregroundStyle(.white)
-                                .padding(.vertical, 6)
-                                .padding(.horizontal, 8)
-                                .background {
-                                    Color.blue
-                                }
-                                .frame(height: 25)
-                                .cornerRadius(5)
-                        }
-                    }
-                }
+                TagCollection(store.tags)
             }
             .onTapGesture { store.send(.didSelectMeetup) }
             .swipeActions(edge: .trailing) {
