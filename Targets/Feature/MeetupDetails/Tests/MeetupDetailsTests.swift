@@ -1,8 +1,8 @@
-//
-//  MeetupDetailsTests.swift
-//  SwiftUp
-//
-//  Created by Krzysztof Babis on 31/01/2024.
-//
+import ComposableArchitecture
+import XCTest
+@testable import MeetupDetails
 
-import Foundation
+@MainActor
+final class MeetupDetailsFeatureTests: XCTestCase {
+    #warning("TODO: To be added")
+}

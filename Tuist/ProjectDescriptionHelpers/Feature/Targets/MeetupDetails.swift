@@ -20,7 +20,7 @@ struct MeetupDetails: Module {
     }
     
     var allTargets: [Target] {
-        [mainTarget]
+        [mainTarget, unitTestsTarget]
     }
 
     private var unitTestsTarget: Target {
