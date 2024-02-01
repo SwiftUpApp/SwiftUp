@@ -5,9 +5,8 @@ struct SwiftUpKit: Module {
     
     var mainTarget: Target {
         FrameworkBuilder {
-            $0.thirdPartyDependencies = [
-                .composableArchitecture
-            ]
+            $0.coreDependencies = [.localization]
+            $0.thirdPartyDependencies = [.composableArchitecture]
         }
         .build(name: "SwiftUpKit",
                destinations: Global.destinations,

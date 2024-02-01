@@ -4,14 +4,14 @@ public struct Meetup: Identifiable {
     public let id: UUID
     public let title: String
     public let description: String
-    public let tags: [String]
+    public let tags: [Tag]
     public let city: String
     
     public init(
         id: UUID,
         title: String,
         description: String,
-        tags: [String],
+        tags: [Tag],
         city: String
     ) {
         self.id = id
@@ -27,7 +27,7 @@ extension Meetup {
         id: UUID(),
         title: "SwiftUp #1",
         description: "Read Marcel's curated selection of new conferences from this month",
-        tags: ["iOS Development", "Conference"],
-        city: "Wrocław"
+        tags: [.city(.cracow), .tools(.swiftUI)],
+        city: "Cracow"
     )
 }
