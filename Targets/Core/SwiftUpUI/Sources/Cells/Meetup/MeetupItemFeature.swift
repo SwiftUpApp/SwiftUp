@@ -16,7 +16,7 @@ public struct MeetupItemFeature: Reducer {
             self.id = meetup.id
             self.title = meetup.title
             self.description = meetup.description
-            self.tags = meetup.tags
+            self.tags = meetup.tags.map { "\($0)" }
             self.city = meetup.city
         }
         

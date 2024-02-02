@@ -1,1 +1,27 @@
-"city.warsaw"="Warsaw";
+"tag.city.cracow" = "Cracow";
+"tag.city.gdansk" = "Gdansk";
+"tag.city.lodz" = "Lodz";
+"tag.city.warsaw" = "Warsaw";
+"tag.city.wroclaw" = "Wroclaw";
+
+"tag.competency.beginner" = "Beginner";
+"tag.competency.intermediate" = "Intermediate";
+"tag.competency.advanced" = "Advanced";
+
+"tag.practices.architecture" = "Architecture";
+"tag.practices.bestPractices" = "Best Practices";
+"tag.practices.debugging" = "Debugging";
+"tag.practices.modularisation" = "Modularisation";
+"tag.practices.testing" = "Testing";
+"tag.practices.tipsAndTricks" = "Tips & Tricks";
+
+"tag.tools.combine" = "Combine";
+"tag.tools.networking" = "Networking";
+"tag.tools.server" = "Server";
+"tag.tools.swiftUI" = "SwiftUI";
+"tag.tools.uiKit" = "UIKit";
+
+"tag.other.design" = "Design";
+"tag.other.multiplatform" = "Multiplatform";
+
+"talk.speaker.prefix" = "by ";
