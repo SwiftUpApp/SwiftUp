@@ -15,6 +15,7 @@ public struct TagCollection: View {
                 }
             }
         }
+        .disabled(true)
     }
 }
 

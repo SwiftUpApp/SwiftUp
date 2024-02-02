@@ -10,11 +10,12 @@ public extension DependencyValues {
 
 private enum EventDateFormatterKey: DependencyKey {
     static let liveValue: EventDateFormatter = {
-        .init(formatDate: { date in
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMMM d, yyyy"
-            formatter.locale = .current
-            return formatter.string(from: date)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d, yyyy"
+        formatter.locale = .current
+        
+        return .init(formatDate: { date in
+            formatter.string(from: date)
         })
     }()
 }
