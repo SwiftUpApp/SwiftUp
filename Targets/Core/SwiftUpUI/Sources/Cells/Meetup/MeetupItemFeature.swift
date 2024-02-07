@@ -6,18 +6,16 @@ import SwiftUpKit
 public struct MeetupItemFeature: Reducer {
     @ObservableState
     public struct State: Equatable, Identifiable {
-        public let id: UUID
-        public let title: String
-        public let description: String
-        public let tags: [String]
-        public let city: String
+        public let meetup: Meetup
+        
+        public var id: UUID { meetup.id }
+        public var title: String { meetup.title }
+        public var description: String { meetup.description }
+        public var tags: [String] { meetup.tags.map { "\($0)" } }
+        public var city: String { meetup.city }
 
         public init(meetup: Meetup) {
-            self.id = meetup.id
-            self.title = meetup.title
-            self.description = meetup.description
-            self.tags = meetup.tags.map { "\($0)" }
-            self.city = meetup.city
+            self.meetup = meetup
         }
         
         public static let mock: Self = .init(meetup: .mock)
