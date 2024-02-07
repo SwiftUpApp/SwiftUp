@@ -4,7 +4,7 @@ import XCTest
 
 @MainActor
 final class TabsFeatureTests: XCTestCase {
-    func testInitialState_shouldBeSetToDashboard() {
+    func testInitialStateShouldBeSetToDashboard() {
         let store = TestStore(
             initialState: TabsFeature.State(),
             reducer: TabsFeature.init)
@@ -14,7 +14,8 @@ final class TabsFeatureTests: XCTestCase {
         }
     }
     
-    func testActiveTab_shouldChange_toSelectedTab() async {
+    @MainActor
+    func testActiveTabShouldChangeToSelectedTab() async {
         let store = TestStore(
             initialState: TabsFeature.State(),
             reducer: TabsFeature.init)

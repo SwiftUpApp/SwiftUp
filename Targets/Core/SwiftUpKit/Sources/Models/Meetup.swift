@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Meetup: Identifiable {
+public struct Meetup: Identifiable, Equatable {
     public let id: UUID
     public let title: String
     public let date: Date

@@ -9,6 +9,9 @@ struct Events: Module {
                 .swiftUpKit,
                 .swiftUpUI
             ]
+            $0.featureDependencies = [
+                .meetupDetails
+            ]
             $0.thirdPartyDependencies = [
                 .composableArchitecture
             ]
@@ -22,6 +25,16 @@ struct Events: Module {
     }
     
     var allTargets: [Target] {
-        [mainTarget]
+        [mainTarget, unitTestsTarget]
+    }
+    
+    private var unitTestsTarget: Target {
+        .unitTests(
+            of: mainTarget,
+            destinations: mainTarget.destinations,
+            sources: ["\(path)/Tests/**"],
+            thirdPartyDependencies: [
+                .composableArchitecture
+            ])
     }
 }

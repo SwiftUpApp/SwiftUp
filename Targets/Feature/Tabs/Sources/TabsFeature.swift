@@ -9,7 +9,7 @@ public struct TabsFeature: Reducer {
     @ObservableState
     public struct State: Equatable {
         var dashboard: DashboardFeature.State = .init()
-        var events: EventsFeature.State = .init()
+        var events: EventsFeature.State = .mock
         var speakers: SpeakersFeature.State = .init()
         var settings: SettingsFeature.State = .init()
         

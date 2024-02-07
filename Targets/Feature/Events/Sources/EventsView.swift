@@ -1,6 +1,7 @@
 import ComposableArchitecture
 import SwiftUI
 import SwiftUpUI
+import MeetupDetails
 
 public struct EventsView: View {
     @Perception.Bindable private var store: StoreOf<EventsFeature>
@@ -24,6 +25,9 @@ public struct EventsView: View {
                         }
                     }
                 }
+            }
+            .navigationDestinationWrapper(item: $store.scope(state: \.meetupDetails, action: \.meetupDetails)) { store in
+                MeetupDetailsView(store: store)
             }
         }
     }
